@@ -1,0 +1,101 @@
+// package.json
+{
+  "name": "vscode-grok-assistant",
+  "displayName": "Grok AI Assistant",
+  "description": "AI-powered coding assistant using Grok",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Machine Learning",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "grok-assistant.explainCode",
+        "title": "Grok: Explain Code"
+      },
+      {
+        "command": "grok-assistant.completeCode",
+        "title": "Grok: Complete Code"
+      },
+      {
+        "command": "grok-assistant.generateTests",
+        "title": "Grok: Generate Tests"
+      },
+      {
+        "command": "grok-assistant.fixCode",
+        "title": "Grok: Fix Code"
+      },
+      {
+        "command": "grok-assistant.askQuestion",
+        "title": "Grok: Ask Question"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "grok-assistant.explainCode",
+        "key": "ctrl+shift+e",
+        "mac": "cmd+shift+e",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "grok-assistant.completeCode",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Grok Assistant",
+      "properties": {
+        "grok-assistant.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "xAI API Key for Grok"
+        },
+        "grok-assistant.model": {
+          "type": "string",
+          "default": "grok-2-latest",
+          "enum": [
+            "grok-2-latest",
+            "grok-2-vision-latest"
+          ],
+          "description": "Grok model to use"
+        },
+        "grok-assistant.inlineCompletion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable inline code completion"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "openai": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^4.9.0",
+    "vsce": "^2.15.0"
+  }
+}
